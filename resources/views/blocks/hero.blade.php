@@ -11,12 +11,12 @@
                 </div>
             @endforeach
         </div>
-        @if(count($block->slide) > 1)
-            <!-- Slider Navigation -->
-            <div class="home1-slider-prev swiper-button-prev main-slider-nav"><i class="lnr lnr-arrow-left"></i></div>
-            <div class="home1-slider-next swiper-button-next main-slider-nav"><i class="lnr lnr-arrow-right"></i></div>
-            <!-- Slider pagination -->
-            <div class="swiper-pagination"></div>
-        @endif
+{{--        @if(count($block->slide) > 1)--}}
+{{--            <!-- Slider Navigation -->--}}
+{{--            <div class="home1-slider-prev swiper-button-prev main-slider-nav"><i class="lnr lnr-arrow-left"></i></div>--}}
+{{--            <div class="home1-slider-next swiper-button-next main-slider-nav"><i class="lnr lnr-arrow-right"></i></div>--}}
+{{--            <!-- Slider pagination -->--}}
+{{--            <div class="swiper-pagination"></div>--}}
+{{--        @endif--}}
     </div>
 </div>

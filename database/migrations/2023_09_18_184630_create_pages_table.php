@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->text('title');
             $table->string('slug')->unique();
             $table->foreignId('parent_id')
                 ->nullable()
@@ -25,7 +25,7 @@ return new class extends Migration
             $table->boolean('is_visible')->default(false);
             $table->string('image')->nullable();
             $table->json('content')->nullable();
-            $table->string('seo_title')->nullable();
+            $table->text('seo_title')->nullable();
             $table->text('seo_description')->nullable();
             $table->timestamps();
         });

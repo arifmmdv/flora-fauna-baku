@@ -16,7 +16,7 @@ class Page extends Model
         'title','slug','parent_id','is_visible','image','template_id','content','seo_title','seo_description'
     ];
 
-    public $translatable = ['content'];
+    public $translatable = ['title','content','seo_title','seo_description'];
 
     protected $casts = [
         'content' => 'array'
