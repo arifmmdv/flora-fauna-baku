@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-12 text-center col-custom">
                     <div class="copyright-content">
-                        <p>Bütün Hüquqları Qorunur | Copyright © 2021 - {{date('Y')}}</p>
+                        <p>{{ __('copyright') }} | Copyright © 2021 - {{date('Y')}}</p>
                     </div>
                 </div>
             </div>

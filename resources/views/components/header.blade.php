@@ -1,3 +1,10 @@
+@php
+    $languages = [
+        "az" => __('azerbaijani'),
+        "en" => __('english'),
+        "ru" => __('russian'),
+    ]
+@endphp
 <!-- Header Area Start Here -->
 <header class="main-header-area">
     <!-- Main Header Area Start -->
@@ -14,26 +21,15 @@
                 <div class="col-lg-8 d-none d-lg-flex justify-content-center col-custom">
                     <nav class="main-nav d-none d-lg-flex">
                         <ul class="nav">
+                            @foreach(\App\Models\Menu::find(1)->items as $menu)
                             <li>
-                                <a href="/{{app()->getLocale()}}">
-                                    <span class="menu-text">Ana Səhifə</span>
+                                <a href="/{{app()->getLocale()}}{{$menu->slug}}" @if(request()->path() == app()->getLocale().$menu->slug) class="active" @endif>
+                                    <span class="menu-text">
+                                        {{$menu->title}}
+                                    </span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="/{{app()->getLocale()}}/haqqimizda">
-                                    <span class="menu-text">Haqqımızda</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/{{app()->getLocale()}}/mehsullar">
-                                    <span class="menu-text">Məhsullar</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/{{app()->getLocale()}}/elaqe">
-                                    <span class="menu-text">Əlaqə</span>
-                                </a>
-                            </li>
+                            @endforeach
                         </ul>
                     </nav>
                 </div>
@@ -49,11 +45,25 @@
 {{--                            <li class="sidemenu-wrap">--}}
 {{--                                <a href="#"><i class="fa fa-search"></i> </a>--}}
 {{--                            </li>--}}
-{{--                            <li class="account-menu-wrap d-none d-lg-flex">--}}
-{{--                                <a href="#" class="off-canvas-menu-btn">--}}
-{{--                                    <i class="fa fa-bars"></i>--}}
-{{--                                </a>--}}
-{{--                            </li>--}}
+                            <li class="languages-switcher d-none d-lg-flex">
+                                <a href="#" class="off-canvas-menu-btn">
+                                    {{app()->getLocale()}}
+                                </a>
+                                <ul>
+                                    @foreach($languages as $locale => $language)
+                                        @if($locale !== app()->getLocale())
+                                            @php
+                                                $pathParts = explode("/", request()->path());
+                                                $pathParts[0] = $locale;
+                                                $newPath = implode("/", $pathParts);
+                                            @endphp
+                                            <li>
+                                                <a href="/{{ $newPath }}">{{ $locale }}</a>
+                                            </li>
+                                        @endif
+                                    @endforeach
+                                </ul>
+                            </li>
                             <li class="mobile-menu-btn d-lg-none">
                                 <a class="off-canvas-btn" href="#">
                                     <i class="fa fa-bars"></i>
@@ -79,32 +89,41 @@
                     <!-- mobile menu navigation start -->
                     <nav>
                         <ul class="mobile-menu">
-                            <li><a href="/{{app()->getLocale()}}">Ana Səhifə</a></li>
-                            <li><a href="/{{app()->getLocale()}}/haqqimizda">Haqqımızda</a></li>
-                            <li><a href="/{{app()->getLocale()}}/mehsullar">Məhsullar</a></li>
-                            <li><a href="/{{app()->getLocale()}}/elaqe">Əlaqə</a></li>
+                            @foreach(\App\Models\Menu::find(1)->items as $menu)
+                            <li><a href="/{{app()->getLocale()}}{{$menu->slug}}">{{$menu->title}}</a></li>
+                            @endforeach
                         </ul>
                     </nav>
                     <!-- mobile menu navigation end -->
                 </div>
                 <!-- mobile menu end -->
-{{--                <div class="offcanvas-widget-area">--}}
-{{--                    <div class="switcher">--}}
-{{--                        <div class="language">--}}
-{{--                            <span class="switcher-title">Language: </span>--}}
-{{--                            <div class="switcher-menu">--}}
-{{--                                <ul>--}}
-{{--                                    <li><a href="#">English</a>--}}
-{{--                                        <ul class="switcher-dropdown">--}}
-{{--                                            <li><a href="#">German</a></li>--}}
-{{--                                            <li><a href="#">French</a></li>--}}
-{{--                                        </ul>--}}
-{{--                                    </li>--}}
-{{--                                </ul>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <div class="top-info-wrap text-left text-black">--}}
+                <div class="offcanvas-widget-area">
+                    <div class="switcher">
+                        <div class="language">
+                            <span class="switcher-title">{{ __('language') }}: </span>
+                            <div class="switcher-menu">
+                                <ul>
+                                    <li><a href="#">{{ $languages[app()->getLocale()] }}</a>
+                                        <ul class="switcher-dropdown">
+                                            @foreach($languages as $locale => $language)
+                                                @if($locale !== app()->getLocale())
+                                                    @php
+                                                        $pathParts = explode("/", request()->path());
+                                                        $pathParts[0] = $locale;
+                                                        $newPath = implode("/", $pathParts);
+                                                    @endphp
+                                                <li>
+                                                    <a href="/{{ $newPath }}">{{ $language }}</a>
+                                                </li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="top-info-wrap text-left text-black">
 {{--                        <ul class="address-info">--}}
 {{--                            <li>--}}
 {{--                                <i class="fa fa-phone"></i>--}}
@@ -122,8 +141,8 @@
 {{--                            <a class="youtube-color-bg" title="Youtube" href="#"><i class="fa fa-youtube"></i></a>--}}
 {{--                            <a class="vimeo-color-bg" title="Vimeo" href="#"><i class="fa fa-vimeo"></i></a>--}}
 {{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
+                    </div>
+                </div>
             </div>
         </div>
     </aside>

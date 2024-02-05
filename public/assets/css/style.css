@@ -1662,6 +1662,33 @@ mark {
 /*    04 - Layout - Header
 /*----------------------------------------*/
 /*-- Main Header Area --*/
+.languages-switcher {
+    position: relative;
+    text-transform: uppercase !important;
+}
+.languages-switcher > a {
+    text-transform: uppercase !important;
+}
+.languages-switcher ul {
+    position: absolute;
+    top: calc(100% - 20px);
+    background: #fff;
+    right: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.2s;
+}
+.languages-switcher:hover ul {
+    opacity: 1;
+    visibility: visible;
+}
+.languages-switcher ul li {
+    border-bottom: 1px solid #eee;
+}
+.languages-switcher ul li a {
+    display: block;
+    padding: 4px 16px;
+}
 .main-header-area .header-logo img {
   width: 125px;
 }
@@ -2669,6 +2696,9 @@ mark {
 /*----------------------------------------*/
 /*    05 - Layout - Footer
 /*----------------------------------------*/
+.footer-area {
+    margin-top: 64px;
+}
 .footer-area .footer-widget-area {
   padding: 100px 0;
   background-color: #1b1b1b;

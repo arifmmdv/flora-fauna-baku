@@ -8,8 +8,8 @@
                     <div class="breadcrumb-content position-relative section-content">
                         <h3 class="title-3">{{$product->name}}</h3>
                         <ul>
-                            <li><a href="/{{app()->getLocale()}}">Ana Səhifə</a></li>
-                            <li><a href="/{{app()->getLocale()}}/mehsullar">Məhsullar</a></li>
+                            <li><a href="/{{app()->getLocale()}}">{{ __('home') }}</a></li>
+                            <li><a href="/{{app()->getLocale()}}/mehsullar">{{ __('products') }}</a></li>
                             <li>{{$product->name}}</li>
                         </ul>
                     </div>

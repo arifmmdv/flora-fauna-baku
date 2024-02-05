@@ -5,7 +5,7 @@
                 <div class="breadcrumb-content position-relative section-content">
                     <h3 class="title-3">{{$block->title}}</h3>
                     <ul>
-                        <li><a href="/{{app()->getLocale()}}">Ana Səhifə</a></li>
+                        <li><a href="/{{app()->getLocale()}}">{{ __('home') }}</a></li>
                         <li>{{$block->title}}</li>
                     </ul>
                 </div>
