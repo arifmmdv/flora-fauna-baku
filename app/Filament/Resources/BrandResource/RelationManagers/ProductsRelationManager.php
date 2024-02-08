@@ -6,6 +6,7 @@ use App\Enum\ProductTypeEnum;
 use App\Models\Product;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Resources\RelationManagers\Concerns\Translatable;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -15,6 +16,7 @@ use Illuminate\Support\Str;
 
 class ProductsRelationManager extends RelationManager
 {
+    use Translatable;
     protected static string $relationship = 'products';
 
     public function form(Form $form): Form
@@ -133,6 +135,7 @@ class ProductsRelationManager extends RelationManager
             ])
             ->headerActions([
                 Tables\Actions\CreateAction::make(),
+                Tables\Actions\LocaleSwitcher::make(),
             ])
             ->actions([
                 Tables\Actions\ActionGroup::make([
