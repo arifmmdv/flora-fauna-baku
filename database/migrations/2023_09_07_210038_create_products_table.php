@@ -21,8 +21,6 @@ return new class extends Migration
             $table->string('sku')->unique();
             $table->string('image');
             $table->text('description')->nullable();
-            $table->text('ingredients')->nullable();
-            $table->text('applications')->nullable();
             $table->unsignedBigInteger('quantity');
             $table->decimal('price',10,2);
             $table->boolean('is_visible')->default(false);

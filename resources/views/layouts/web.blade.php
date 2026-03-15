@@ -65,7 +65,7 @@
     <link rel="stylesheet" href="/assets/css/plugins/magnific-popup.css">
 
     <!-- Main Style CSS -->
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css?v=1.1">
 </head>
 <body>
 

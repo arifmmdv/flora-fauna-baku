@@ -134,6 +134,18 @@ img {
   display: block;
 }
 
+.aspect-15-16 {
+    aspect-ratio: 15 / 16;
+    object-fit: cover;
+    object-position: center;
+}
+
+.aspect-3-4 {
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    object-position: center;
+}
+
 a {
   color: inherit;
   display: inline-block;

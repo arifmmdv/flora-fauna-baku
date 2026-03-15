@@ -1,4 +1,4 @@
-<div class="mt-5">
+\<div class="mt-5">
     <div class="container">
         <div class="row">
             <div class="col-12 col-custom">
@@ -20,7 +20,7 @@
                     <div class="single-product position-relative mr-0 ml-0">
                         <div class="product-image">
                             <a class="d-block" href="/{{app()->getLocale()}}/mehsullar/{{$product->slug}}">
-                                <img src="/uploads/{{$product->image}}" alt="" class="product-image-1 w-100">
+                                <img src="/uploads/{{$product->image}}" alt="" class="product-image-1 w-100 aspect-3-4">
                             </a>
                         </div>
                         <div class="product-content">
@@ -28,7 +28,8 @@
                                 <h4 class="title-2"> <a href="/{{app()->getLocale()}}/mehsullar/{{$product->slug}}">{{$product->name}}</a></h4>
                             </div>
                             <div class="price-box">
-                                <span class="regular-price ">{{$product->price}} ₼</span>
+                                <span class="regular-price" style="opacity: 0">Details</span>
+                                <!--<span class="regular-price">{{$product->price}} ₼</span>-->
                             </div>
                             <a href="/{{app()->getLocale()}}/mehsullar/{{$product->slug}}" class="btn product-cart">Ətraflı</a>
                         </div>
