@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Filament\Resources\Concerns\Translatable;
+use FilamentTiptapEditor\TiptapEditor;
 
 class ProductResource extends Resource
 {
@@ -79,16 +80,14 @@ class ProductResource extends Resource
                                     ->dehydrated()
                                     ->required()
                                     ->unique(Product::class, 'slug', ignoreRecord: true),
-                                Forms\Components\RichEditor::make('description')->columnSpan('full'),
-                                Forms\Components\RichEditor::make('ingredients')->columnSpan('full'),
-                                Forms\Components\Repeater::make('applications')
-                                    ->label('Application')
-                                    ->schema([
-                                        Forms\Components\RichEditor::make('plant')->label('Plant'),
-                                        Forms\Components\RichEditor::make('dose')->label('Dose'),
-                                        Forms\Components\RichEditor::make('application')->label('Application'),
-                                    ])->collapsible()
+
+                                TiptapEditor::make('description')->profile('default')->columnSpan('full'),
+                                TiptapEditor::make('ingredients')->profile('default')->columnSpan('full'),
+                                TiptapEditor::make('applications')->profile('default')->columnSpan('full'),
                             ])->columns('full'),
+                    ])->columnSpan(3),
+                Forms\Components\Group::make()
+                    ->schema([
                         Forms\Components\Section::make('Pricing & Inventory')
                             ->schema([
                                 Forms\Components\TextInput::make('sku')
@@ -108,10 +107,8 @@ class ProductResource extends Resource
                                         'downloadable' => ProductTypeEnum::DOWNLOADABLE->value,
                                         'deliverable' => ProductTypeEnum::DELIVERABLE->value
                                     ])->required()
-                            ])->columns(2),
-                    ]),
-                Forms\Components\Group::make()
-                    ->schema([
+                            ]),
+
                         Forms\Components\Section::make('Status')
                             ->schema([
                                 Forms\Components\Toggle::make('is_visible')
@@ -146,8 +143,8 @@ class ProductResource extends Resource
                                     ->multiple()
                                     ->required()
                             ])->collapsible(),
-                    ])
-            ]);
+                    ])->columnSpan(1),
+            ])->columns(4);
     }
 
     public static function table(Table $table): Table

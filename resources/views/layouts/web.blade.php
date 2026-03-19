@@ -66,6 +66,7 @@
 
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="/assets/css/style.css?v=1.1">
+    <link rel="stylesheet" href="/assets/css/custom-style.css?v=1.2">
 </head>
 <body>
 

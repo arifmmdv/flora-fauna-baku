@@ -37,10 +37,9 @@
                                 <span class="regular-price">{{$product->price}} ₼</span>
                             </div>
                         @endif
-                        <div class="sku mb-3">
-                            <span>SKU: {{$product->sku}}</span>
+                        <div class="custom-content">
+                            {!! $product->ingredients !!}
                         </div>
-                        {!! $product->description !!}
 {{--                        <div class="quantity-with_btn mb-5">--}}
 {{--                            <div class="quantity">--}}
 {{--                                <div class="cart-plus-minus">--}}
@@ -67,13 +66,13 @@
                     </div>
                 </div>
             </div>
-            @if(!empty($product->ingredients) && !empty($product->ingredients))
+            @if(!empty($product->description) && !empty($product->applications))
             <div class="row mt-no-text">
                 <div class="col-lg-12 col-custom">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        @if(!empty($product->ingredients))
+                        @if(!empty($product->description))
                             <li class="nav-item">
-                                <a class="nav-link active text-uppercase" id="ingredients" data-bs-toggle="tab" href="#connectIngredients" role="tab" aria-selected="true">Tərkib</a>
+                                <a class="nav-link active text-uppercase" id="ingredients" data-bs-toggle="tab" href="#connectIngredients" role="tab" aria-selected="true">Haqqında</a>
                             </li>
                         @endif
                         @if(!empty($product->applications))
@@ -83,29 +82,20 @@
                         @endif
                     </ul>
                     <div class="tab-content mb-text" id="myTabContent">
-                        @if(!empty($product->ingredients))
+                        @if(!empty($product->description))
                             <div class="tab-pane fade show active" id="connectIngredients" role="tabpanel" aria-labelledby="ingredients">
                                 <div class="desc-content">
-                                    {!! $product->ingredients !!}
+                                    <div class="custom-content">
+                                        {!! $product->description !!}
+                                    </div>
                                 </div>
                             </div>
                         @endif
                         @if(!empty($product->applications))
                             <div class="tab-pane fade" id="connectApplications" role="tabpanel" aria-labelledby="applications">
-                                <table class="table border">
-                                    <tr>
-                                        <th>Bitki</th>
-                                        <th>Doza</th>
-                                        <th>Tətbiq</th>
-                                    </tr>
-                                    @foreach (json_decode(json_encode($product->applications)) as $application)
-                                        <tr>
-                                            <td>{!! $application->plant !!}</td>
-                                            <td>{!! $application->dose !!}</td>
-                                            <td>{!! $application->application !!}</td>
-                                        </tr>
-                                    @endforeach
-                                </table>
+                                <div class="custom-table">
+                                    {!! $product->applications !!}
+                                </div>
                             </div>
                         @endif
                     </div>
